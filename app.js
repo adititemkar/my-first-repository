@@ -1,13 +1,12 @@
-var heading = document.getElementById('heading')
-var body = document.querySelector('body')
+var list = document.querySelector('url')
 
-console.log(heading)
+console.log(list)
 
-heading.innerHTML = "i was added by JS"
-heading.style = "color:red;font-size:2rem"
 
-heading.classList.add('five')
-heading.classList.remove('one')
+var arr = ['GO TO GYM', 'COOK OATMEAL', 'EAT']
 
-console.log(heading.classList)
-body.classList.add('dark')
+for (var i = 0; i < arr.length; i++) {
+    var element = document.createElement('li')
+    var textnode = document.createTextNode(arr[i])
+    console.log(textnode)
+}

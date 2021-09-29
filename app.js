@@ -1,6 +1,13 @@
-console.log(typeof "Hello World")
-console.warn("Hello Warning")
-console.error("Hello error")
+var heading = document.getElementById('heading')
+var body = document.querySelector('body')
 
-console.log(typeof 1)
-console.log(typeof true)
+console.log(heading)
+
+heading.innerHTML = "i was added by JS"
+heading.style = "color:red;font-size:2rem"
+
+heading.classList.add('five')
+heading.classList.remove('one')
+
+console.log(heading.classList)
+body.classList.add('dark')

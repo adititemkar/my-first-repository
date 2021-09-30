@@ -1,12 +1,13 @@
-var list = document.querySelector('url')
+var button = document.querySelector('button')
+var input = document.querySelector('input')
+var list = document.querySelector('ul')
 
-console.log(list)
 
-
-var arr = ['GO TO GYM', 'COOK OATMEAL', 'EAT']
-
-for (var i = 0; i < arr.length; i++) {
-    var element = document.createElement('li')
-    var textnode = document.createTextNode(arr[i])
-    console.log(textnode)
+const callbackfunc = (event) => {
+    const inputvalue = input.value
+    const element = document.createElement('li')
+    const textnode = document.createTextNode(inputvalue)
+    element.appendChild(textnode)
+    list.appendChild(element)
 }
+button.addEventListener('click', callbackfunc)

@@ -1,29 +1,18 @@
-var button = document.querySelector('button')
-var input = document.querySelector('input')
-var list = document.querySelector('ul')
+//let response = fetch
+const list = document.querySelector('ul')
 
-var chores = []
-
-var deleteItem = (value) => {
-    const index = chores.indexOf(value)
-    console.log(index)
-}
+let arr = ["one", "Two", "Three", "Four"]
 
 
-const callbackfunc = (event) => {
-    // console.log(input.value)
-    const inputValue = input.value
-    if (chores.includes(inputValue)) {
-        console.log('already exists')
-    } else {
-        chores.push(inputValue)
-        const element = document.createElement('li')
-        const textNode = document.createTextNode(inputValue)
-        element.appendChild(textNode)
-        list.appendChild(element)
-        element.addEventListener('click', (e) => { e.target.remove() })
-    }
-}
+arr.forEach(chore => {
+    const element = document.createElement('li')
+    const textNode = document.createTextNode(chore)
+    element.appendChild(textNode)
+    element.addEventListener('click', (e) => {
+        //console.log(e.target.innerHTML)
+        const userInput = window.prompt(`are you shure want to delete ${chore}`)
+        if (userInput === 'yes') e.target.remove()
+    })
 
-
-button.addEventListener('click', callbackfunc)
+    list.appendChild(element)
+})

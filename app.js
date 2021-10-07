@@ -1,18 +1,32 @@
-//let response = fetch
-const list = document.querySelector('ul')
+const table = document.querySelector('table')
+console.log(table)
 
-let arr = ["one", "Two", "Three", "Four"]
+const createRow = (user) => {
+    let newRow = document.createElement('tr')
+    let element = `
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>${user.username}</td>`
 
 
-arr.forEach(chore => {
-    const element = document.createElement('li')
-    const textNode = document.createTextNode(chore)
-    element.appendChild(textNode)
-    element.addEventListener('click', (e) => {
-        //console.log(e.target.innerHTML)
-        const userInput = window.prompt(`are you shure want to delete ${chore}`)
-        if (userInput === 'yes') e.target.remove()
+    newRow.innerHTML = element
+    return newRow
+
+
+}
+
+
+fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        data.forEach(user => {
+
+            table.appendChild(createRow(user))
+
+
+
+
+        })
     })
-
-    list.appendChild(element)
-})

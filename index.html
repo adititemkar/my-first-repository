@@ -9,10 +9,19 @@
 </head>
 
 <body>
-    <input type="text">
-    <button>Add</button>
-    <div style="font-size: 30px;"></div>
-    <script src="./new.js" />
+    <ul></ul>
+    <script>
+        fetch("http://localhost:3000/getnames")
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                let list = document.querySelector("url");
+                data.forEach((item) => {
+                    list.append(item.name);
+
+                });
+            });
+    </script>
 </body>
 
 </html>

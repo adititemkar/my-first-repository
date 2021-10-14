@@ -1,42 +1,38 @@
-// const http = require('http')
-// const fs = require('fs')
-// const path = require('path')
-
-//console.log(http)
-
-//const server = http.createServer((req, res) => {
-//console.log(req.url)
-// console.log(req.headers)
-//console.log(req.method)
-//const path = req.url
-//const markup = fs.readFileSync(path.resolve('./index.html'))
-//     const { url } = req
-//     if (url == '/login') {
-//         res.write('<h1>LOGIN</h1>')
-//         res.end()
-//     }
-//     if (url == '/signup') {
-//         res.write('<h1>SIGNUP</h1>')
-//         res.end()
-//     }
-// })
-// console.log(server)
-// server.listen(3000, () => {
-//     console.log(`server listening at port: ${3000}`)
-// })
-const data = [{ name: "aditi" }, { name: "sakshi" }, { name: "ramu" }]
 const express = require('express')
 const app = express()
+const PORT = 3000
 
-app.get('/getnames', (req, res) => {
+app.use(express.json())
 
-        res.send(data)
+let products = [{ name: 'iPhone12 Case', price: '999' }, { name: 'iPhone13 Case', price: '1199' }, { name: 'iPhone13 Pro Case', price: '1499' }]
+
+// Middlewares
+const validator = (req, res, next) => {
+    const { name, price } = req.body
+
+    if (!name || !price) res.json({ error: "Validation failed" })
+    else next()
+}
+
+// -----------PUBLIC routes---------------
+// GET ROUTE
+//  Send all products
+app.get('/products', (req, res) => {
+    res.json({ products })
+})
+
+// -----------PRIVATE routes---------------
+
+app.post('/products/add', validator, (req, res) => {
+    const { name, price } = req.body
+
+    products.push({
+        name,
+        price,
     })
-    // app.get('/signup', (req, res) => {
+    res.send({ products })
+})
 
-//     res.send('this is response signup')
-// })
-
-app.listen(3000, () => {
-    console.log("server listning port 3000")
+app.listen(PORT, () => {
+    console.log(`Server started at port ${PORT}`)
 })

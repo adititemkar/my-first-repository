@@ -14,6 +14,9 @@ const validator = (req, res, next) => {
     else next()
 }
 
+
+
+
 // -----------PUBLIC routes---------------
 // GET ROUTE
 //  Send all products
